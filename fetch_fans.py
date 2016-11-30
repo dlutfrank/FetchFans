@@ -45,15 +45,15 @@ class ConsumerThread(Thread):
                 if contact.get('sina_url'):
                     fans = fetch_sina_fans.sina_fans(contact['sina_url'])
                     if fans:
-                        contact['sina_fans'] = fans['fans']
+                        contact['sina_fans'] = fans.get('fans')
                     else:
                         contact['sina_fans'] = 'null'
                 if contact.get('blog_url'):
                     fans = fetch_blog_fans.weibo_fans(contact['blog_url'])
                     if fans:
-                        contact['blog_fans'] = fans['fans']
+                        contact['blog_fans'] = fans.get('fans')
                     else:
-                        contact['blog_fans'] = fans['blog']
+                        contact['blog_fans'] = 'null'
             fo.write(ps(contact))
             fo.flush()
             q.task_done()
